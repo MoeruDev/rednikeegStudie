@@ -8,7 +8,6 @@ public class Client {
     private String name;
     private String surname;
     private String phoneNum;
-    private List<Agreement> agreementList;
 
     // setters
     public void setName(String name) {

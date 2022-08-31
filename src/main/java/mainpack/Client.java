@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Client {
-    private String name, surname, phoneNum;
+    private String name;
+    private String surname;
+    private String phoneNum;
     private List<Agreement> agreementList;
 
     // setters

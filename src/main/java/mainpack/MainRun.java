@@ -24,6 +24,7 @@ public class MainRun {
     public static void main(String[] args) {
         MainRun menu = new MainRun();
         Database database = new Database();
+        InOutHndler handler = new InOutHndler();
         Scanner scanner = new Scanner(System.in);
         int choice, index;
         do{
@@ -32,7 +33,7 @@ public class MainRun {
             switch(choice){
                 case 1:
                     Client tmp = new Client();
-                    tmp.addClient();
+                    handler.addClient(tmp);
                     database.getList().add(tmp);
                     System.out.println("Client successfully added");
                     break;
@@ -41,9 +42,9 @@ public class MainRun {
                         System.out.println("There are no clients in the database");
                     } else {
                         Agreement tmp1 = new Agreement();
-                        tmp1.addAgreement();
+                        handler.addAgreement(tmp1);
                         System.out.println("Choose the client to create the agreement");
-                        database.printClients();
+                        handler.printClients(database);
                         index = scanner.nextInt();
                         database.getList().get(index).getAgreementList().add(tmp1);
                         System.out.println("Agreement successfully added to " + database.getList().get(index).getName() + " " +
@@ -54,16 +55,16 @@ public class MainRun {
                     if(database.getList().isEmpty()){
                         System.out.println("There are no clients in the database");
                     } else {
-                        menu.incomeMenu();
-                        choice = scanner.nextInt();
-                        while (choice < 4) {
+                        do{
+                            menu.incomeMenu();
+                            choice = scanner.nextInt();
                             switch (choice) {
                                 case 1:
                                     System.out.println("Income for all the clients' agreements is = " + database.calcAll());
                                     break;
                                 case 2:
                                     System.out.println("Choose the client to calculate all the agreements' income");
-                                    database.printClients();
+                                    handler.printClients(database);
                                     index = scanner.nextInt();
                                     System.out.println("Client income is = " + database.getList().get(index).calcClientIncome());
                                     break;
@@ -71,16 +72,14 @@ public class MainRun {
                                     System.out.println("The average income per client is = " + database.calcAverage());
                                     break;
                             }
-                            menu.incomeMenu();
-                            choice = scanner.nextInt();
-                        }
+                        }while (choice < 4);
                     }
                     break;
                 case 4:
                     if(database.getList().isEmpty()){
                         System.out.println("There are no clients in the database");
                     } else {
-                        database.printClients();
+                        handler.printClients(database);
                     }
                     break;
                 case 5:
@@ -88,12 +87,12 @@ public class MainRun {
                         System.out.println("There are no clients in the database");
                     } else {
                         System.out.println("Choose the client to see the agreements");
-                        database.printClients();
+                        handler.printClients(database);
                         index = scanner.nextInt();
                         if(database.getList().get(index).getAgreementList().isEmpty()){
                             System.out.println("There are no agreements for this client");
                         } else {
-                            database.getList().get(index).printAgreements();
+                            handler.printAgreements(database,index);
                         }
                     }
                     break;

@@ -49,16 +49,4 @@ public class Agreement {
         income = in;
     }
 
-    public void addAgreement(){
-        Scanner scan = new Scanner(System.in);
-
-        System.out.println("Enter title:");
-        setTitle(scan.nextLine());
-
-        System.out.println("Enter number:");
-        setNumber(scan.nextInt());
-
-        System.out.println("Enter income:");
-        setIncome(scan.nextInt());
-    }
 }

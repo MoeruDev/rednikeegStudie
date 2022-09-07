@@ -47,4 +47,11 @@ public class Agreement {
         income = in;
     }
 
+    @Override
+    public String toString() {
+        return
+                "Title='" + title + '\'' +
+                ", Number=" + number +
+                ", Income=" + income;
+    }
 }

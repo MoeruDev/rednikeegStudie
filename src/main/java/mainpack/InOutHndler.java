@@ -32,20 +32,19 @@ public class InOutHndler {
     }
 
     public void printClients(Database database){
-
         for(int i=0; i <database.getList().size();i++){
-            System.out.println(i+". "+ database.getList().get(i).getName() + " "
-                    + database.getList().get(i).getSurname() + " " + database.getList().get(i).getPhoneNum());
+            System.out.println(i+". "+ database.getList().get(i).toString());
         }
-
     }
 
     public void printAgreements(Database database,int index){
-
         for(int i=0; i <database.getList().get(index).getAgreementList().size();i++){
-            System.out.println(i+". "+ database.getList().get(index).getAgreementList().get(i).getTitle() + " "
-                    + database.getList().get(index).getAgreementList().get(i).getNumber() + " " +
-                    database.getList().get(index).getAgreementList().get(i).getIncome());
+            System.out.println(i+". "+ database.getList().get(index).getAgreementList().get(i).toString());
         }
+        //for(int i=0; i <database.getList().get(index).getAgreementList().size();i++){
+        //    System.out.println(i+". "+ database.getList().get(index).getAgreementList().get(i).getTitle() + " "
+       //             + database.getList().get(index).getAgreementList().get(i).getNumber() + " " +
+       //             database.getList().get(index).getAgreementList().get(i).getIncome());
+       // }
     }
 }

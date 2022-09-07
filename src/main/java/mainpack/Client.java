@@ -57,4 +57,12 @@ public class Client {
          //       .map(Agreement::getIncome)
          //       .sum();
     }
+
+    @Override
+    public String toString() {
+        return
+                "Name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", Phone Number='" + phoneNum + '\'';
+    }
 }

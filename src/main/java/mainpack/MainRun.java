@@ -26,9 +26,9 @@ public class MainRun {
         Database database = new Database();
         Scanner scanner = new Scanner(System.in);
         int choice, index;
-        menu.mainMenu();
-        choice = scanner.nextInt();
-        while (choice < 6){
+        do{
+            menu.mainMenu();
+            choice = scanner.nextInt();
             switch(choice){
                 case 1:
                     Client tmp = new Client();
@@ -98,8 +98,6 @@ public class MainRun {
                     }
                     break;
             }
-            menu.mainMenu();
-            choice = scanner.nextInt();
-        }
+        }while (choice < 6);
     }
 }

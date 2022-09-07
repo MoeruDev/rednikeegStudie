@@ -38,9 +38,7 @@ public class Agreement {
     //constructor
 
     Agreement(){
-        title = null;
-        number = null;
-        income = null;
+
     }
 
     Agreement(String nm, Integer num, Integer in){

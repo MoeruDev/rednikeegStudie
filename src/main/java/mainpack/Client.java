@@ -36,9 +36,6 @@ public class Client {
     public List<Agreement> getAgreementList(){ return this.agreementList;}
     //constructor
     Client(){
-        name = null;
-        surname = null;
-        phoneNum = null;
         agreementList = new ArrayList<>();
     }
 

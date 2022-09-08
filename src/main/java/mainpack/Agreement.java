@@ -38,9 +38,7 @@ public class Agreement {
     //constructor
 
     Agreement(){
-        title = null;
-        number = null;
-        income = null;
+
     }
 
     Agreement(String nm, Integer num, Integer in){
@@ -49,16 +47,11 @@ public class Agreement {
         income = in;
     }
 
-    public void addAgreement(){
-        Scanner scan = new Scanner(System.in);
-
-        System.out.println("Enter title:");
-        setTitle(scan.nextLine());
-
-        System.out.println("Enter number:");
-        setNumber(scan.nextInt());
-
-        System.out.println("Enter income:");
-        setIncome(scan.nextInt());
+    @Override
+    public String toString() {
+        return
+                "Title='" + title + '\'' +
+                ", Number=" + number +
+                ", Income=" + income;
     }
 }

@@ -10,14 +10,7 @@ public class Database {
     Database(){
         list = new ArrayList<>();
     }
-    public void printClients(){
 
-       for(int i=0; i <list.size();i++){
-           System.out.println(i+". "+ list.get(i).getName() + " "
-                   + list.get(i).getSurname() + " " + list.get(i).getPhoneNum());
-       }
-
-    }
     public List<Client> getList(){
         return this.list;
     }
@@ -33,7 +26,6 @@ public class Database {
     }
 
     public double calcAverage(){
-        double result = (double) calcAll() / list.size();
-        return result;
+        return (double) calcAll() / list.size();
     }
 }

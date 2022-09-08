@@ -24,82 +24,69 @@ public class MainRun {
     public static void main(String[] args) {
         MainRun menu = new MainRun();
         Database database = new Database();
+        InOutHandler handler = new InOutHandler();
         Scanner scanner = new Scanner(System.in);
         int choice, index;
-        menu.mainMenu();
-        choice = scanner.nextInt();
-        while (choice < 6){
-            switch(choice){
-                case 1:
-                    Client tmp = new Client();
-                    tmp.addClient();
-                    database.getList().add(tmp);
-                    System.out.println("Client successfully added");
-                    break;
-                case 2:
-                    if(database.getList().isEmpty()){
-                        System.out.println("There are no clients in the database");
-                    } else {
+        do{
+            menu.mainMenu();
+            choice = scanner.nextInt();
+            if(choice == 1){
+                Client tmp = new Client();
+                handler.addClient(tmp);
+                database.getList().add(tmp);
+                System.out.println("Client successfully added");
+            }
+            else if(choice > 1 && choice < 6){
+                if(database.getList().isEmpty())
+                {
+                    System.out.println("There are no clients in the database");
+                } else {
+                    if (choice == 2) {
                         Agreement tmp1 = new Agreement();
-                        tmp1.addAgreement();
+                        handler.addAgreement(tmp1);
                         System.out.println("Choose the client to create the agreement");
-                        database.printClients();
+                        handler.printClients(database);
                         index = scanner.nextInt();
                         database.getList().get(index).getAgreementList().add(tmp1);
                         System.out.println("Agreement successfully added to " + database.getList().get(index).getName() + " " +
                                 database.getList().get(index).getSurname());
                     }
-                    break;
-                case 3:
-                    if(database.getList().isEmpty()){
-                        System.out.println("There are no clients in the database");
-                    } else {
-                        menu.incomeMenu();
-                        choice = scanner.nextInt();
-                        while (choice < 4) {
-                            switch (choice) {
-                                case 1:
-                                    System.out.println("Income for all the clients' agreements is = " + database.calcAll());
-                                    break;
-                                case 2:
-                                    System.out.println("Choose the client to calculate all the agreements' income");
-                                    database.printClients();
-                                    index = scanner.nextInt();
-                                    System.out.println("Client income is = " + database.getList().get(index).calcClientIncome());
-                                    break;
-                                case 3:
-                                    System.out.println("The average income per client is = " + database.calcAverage());
-                                    break;
-                            }
+                    else if (choice == 3) {
+                        do{
                             menu.incomeMenu();
                             choice = scanner.nextInt();
-                        }
+                            if(choice == 1){
+                                System.out.println("Income for all the clients' agreements is = " + database.calcAll());
+                            } else if (choice == 2) {
+                                System.out.println("Choose the client to calculate all the agreements' income");
+                                handler.printClients(database);
+                                index = scanner.nextInt();
+                                System.out.println("Client income is = " + database.getList().get(index).calcClientIncome());
+                            } else if (choice == 3) {
+                                System.out.println("The average income per client is = " + database.calcAverage());
+                            } else {
+                                System.out.println("Exiting...");
+                            }
+                        }while (choice < 4);
                     }
-                    break;
-                case 4:
-                    if(database.getList().isEmpty()){
-                        System.out.println("There are no clients in the database");
-                    } else {
-                        database.printClients();
+                    else if (choice == 4) {
+                        handler.printClients(database);
                     }
-                    break;
-                case 5:
-                    if(database.getList().isEmpty()){
-                        System.out.println("There are no clients in the database");
-                    } else {
+                    else if (choice == 5) {
                         System.out.println("Choose the client to see the agreements");
-                        database.printClients();
+                        handler.printClients(database);
                         index = scanner.nextInt();
                         if(database.getList().get(index).getAgreementList().isEmpty()){
                             System.out.println("There are no agreements for this client");
                         } else {
-                            database.getList().get(index).printAgreements();
+                            handler.printAgreements(database,index);
                         }
                     }
-                    break;
+                }
             }
-            menu.mainMenu();
-            choice = scanner.nextInt();
-        }
+            else {
+                System.out.println("Exiting...");
+            }
+        }while (choice < 6);
     }
 }

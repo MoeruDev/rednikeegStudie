@@ -36,9 +36,6 @@ public class Client {
     public List<Agreement> getAgreementList(){ return this.agreementList;}
     //constructor
     Client(){
-        name = null;
-        surname = null;
-        phoneNum = null;
         agreementList = new ArrayList<>();
     }
 
@@ -48,26 +45,7 @@ public class Client {
         phoneNum = pn;
     }
 
-    public void addClient(){
-        Scanner scan = new Scanner(System.in);
 
-        System.out.println("Enter name:");
-        setName(scan.nextLine());
-
-        System.out.println("Enter surname:");
-        setSurname(scan.nextLine());
-
-        System.out.println("Enter phone number:");
-        setPhoneNum(scan.nextLine());
-    }
-
-    public void printAgreements(){
-
-        for(int i=0; i <agreementList.size();i++){
-            System.out.println(i+". "+ agreementList.get(i).getTitle() + " "
-                    + agreementList.get(i).getNumber() + " " + agreementList.get(i).getIncome());
-        }
-    }
 
     public int calcClientIncome(){
         int result = 0;
@@ -75,5 +53,16 @@ public class Client {
             result += agreementList.get(i).getIncome();
         }
         return result;
+         // int result1 =agreementList.stream()
+         //       .map(Agreement::getIncome)
+         //       .sum();
+    }
+
+    @Override
+    public String toString() {
+        return
+                "Name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", Phone Number='" + phoneNum + '\'';
     }
 }

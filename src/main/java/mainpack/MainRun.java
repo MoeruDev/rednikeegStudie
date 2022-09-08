@@ -24,7 +24,7 @@ public class MainRun {
     public static void main(String[] args) {
         MainRun menu = new MainRun();
         Database database = new Database();
-        InOutHndler handler = new InOutHndler();
+        InOutHandler handler = new InOutHandler();
         Scanner scanner = new Scanner(System.in);
         int choice, index;
         do{
@@ -36,7 +36,7 @@ public class MainRun {
                 database.getList().add(tmp);
                 System.out.println("Client successfully added");
             }
-            else if(choice == 2 || choice == 3 || choice == 4 || choice == 5){
+            else if(choice > 1 && choice < 6){
                 if(database.getList().isEmpty())
                 {
                     System.out.println("There are no clients in the database");

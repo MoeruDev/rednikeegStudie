@@ -1,9 +1,8 @@
 package mainpack;
 
-import java.util.List;
 import java.util.Scanner;
 
-public class InOutHndler {
+public class InOutHandler {
 
     public void addClient(Client client){
         Scanner scan = new Scanner(System.in);
@@ -41,10 +40,5 @@ public class InOutHndler {
         for(int i=0; i <database.getList().get(index).getAgreementList().size();i++){
             System.out.println(i+". "+ database.getList().get(index).getAgreementList().get(i).toString());
         }
-        //for(int i=0; i <database.getList().get(index).getAgreementList().size();i++){
-        //    System.out.println(i+". "+ database.getList().get(index).getAgreementList().get(i).getTitle() + " "
-       //             + database.getList().get(index).getAgreementList().get(i).getNumber() + " " +
-       //             database.getList().get(index).getAgreementList().get(i).getIncome());
-       // }
     }
 }

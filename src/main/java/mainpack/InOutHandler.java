@@ -19,6 +19,8 @@ public class InOutHandler {
 
     public void addAgreement(Agreement agreement){
         Scanner scan = new Scanner(System.in);
+        InOutHandler inHandler = new InOutHandler();
+        int choice;
 
         System.out.println("Enter title:");
         agreement.setTitle(scan.nextLine());
@@ -26,8 +28,17 @@ public class InOutHandler {
         System.out.println("Enter number:");
         agreement.setNumber(scan.nextInt());
 
-        System.out.println("Enter income:");
-        agreement.setIncome(scan.nextInt());
+    }
+
+    public void addSubject(AbstractSubject subject){
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Enter name:");
+        subject.setName(scan.nextLine());
+
+        System.out.println("Enter Price:");
+        subject.setNominalPrice(scan.nextDouble());
+
     }
 
     public void printClients(Database database){

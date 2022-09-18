@@ -5,7 +5,9 @@ import java.util.Scanner;
 public class Agreement {
     private String title;
     private Integer number;
-    private Integer income;
+    private Double income;
+
+    private AbstractSubject subject;
 
     //setters
 
@@ -17,10 +19,17 @@ public class Agreement {
         this.number = number;
     }
 
-    public void setIncome(Integer income) {
-        this.income = income;
+    public void setIncome() {
+        if(this.subject.getType().equals("House")){
+            this.income = subject.nominalPrice * 0.02 + 250;
+        } else {
+            this.income = subject.nominalPrice * 0.01 + 100;
+        }
     }
 
+    public void setSubject(AbstractSubject subject) {
+        this.subject = subject;
+    }
     //getters
 
     public String getTitle(){
@@ -31,27 +40,42 @@ public class Agreement {
         return this.number;
     }
 
-    public Integer getIncome(){
+    public AbstractSubject getSubject() {
+        return subject;
+    }
+
+    public Double getIncome(){
         return this.income;
     }
 
     //constructor
 
     Agreement(){
-
+        income = 0.0;
     }
 
-    Agreement(String nm, Integer num, Integer in){
+    Agreement(String nm, Integer num, Double in){
         title = nm;
         number = num;
         income = in;
     }
 
+
     @Override
     public String toString() {
-        return
-                "Title='" + title + '\'' +
-                ", Number=" + number +
-                ", Income=" + income;
+        if(subject == null)
+        {
+            return
+                    "Title='" + title + '\'' +
+                            ", Number=" + number +
+                            ", Income=" + income;
+        } else {
+            return
+                    "Title='" + title + '\'' +
+                            ", Number=" + number +
+                            ", Income=" + income +
+                            ", " + subject.toString();
+        }
+
     }
 }

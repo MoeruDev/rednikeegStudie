@@ -9,24 +9,30 @@ public class MainRun {
         System.out.println("\nMenu\n" + "Choose one option\n");
         System.out.println("1.Add Client");
         System.out.println("2.Create agreement for client");
-        System.out.println("3.Calculate the income of company");
-        System.out.println("4.Show the info(clients)");
-        System.out.println("5.Show the info(agreements)");
-        System.out.println("6.Exit program");
+        System.out.println("3.Create subject for agreement");
+        System.out.println("4.Calculate the income of company");
+        System.out.println("5.Show the info(clients)");
+        System.out.println("6.Show the info(agreements)");
+        System.out.println("7.Exit program");
     }
     public void incomeMenu(){
         System.out.println("\nChoose the criterion to calculate the income\n");
-        System.out.println("3.1 All agreements");
-        System.out.println("3.2 Specific client");
-        System.out.println("3.3 Average agreements of clients");
-        System.out.println("3.4 Exit");
+        System.out.println("4.1 All agreements");
+        System.out.println("4.2 Specific client");
+        System.out.println("4.3 Average agreements of clients");
+        System.out.println("4.4 Exit");
+    }
+    public void subjectMenu(){
+        System.out.println("Enter Subject:");
+        System.out.println("1.House");
+        System.out.println("2.Apartment");
     }
     public static void main(String[] args) {
         MainRun menu = new MainRun();
         Database database = new Database();
         InOutHandler handler = new InOutHandler();
         Scanner scanner = new Scanner(System.in);
-        int choice, index;
+        int choice, index,index2;
         do{
             menu.mainMenu();
             choice = scanner.nextInt();
@@ -36,7 +42,7 @@ public class MainRun {
                 database.getList().add(tmp);
                 System.out.println("Client successfully added");
             }
-            else if(choice > 1 && choice < 6){
+            else if(choice > 1 && choice < 7){
                 if(database.getList().isEmpty())
                 {
                     System.out.println("There are no clients in the database");
@@ -52,6 +58,30 @@ public class MainRun {
                                 database.getList().get(index).getSurname());
                     }
                     else if (choice == 3) {
+                        System.out.println("Choose the client");
+                        handler.printClients(database);
+                        index = scanner.nextInt();
+                        if(database.getList().get(index).getAgreementList().isEmpty()){
+                            System.out.println("There are no agreements for this client");
+                        } else {
+                            handler.printAgreements(database,index);
+                            System.out.println("Choose the agreement");
+                            index2 = scanner.nextInt();
+                            menu.subjectMenu();
+                            int choiceSub = scanner.nextInt();
+                            AbstractSubject tmp;
+                            if(choiceSub == 1){
+                                tmp = new House();
+                            } else {
+                                tmp = new Apartment();
+                            }
+                            handler.addSubject(tmp);
+                            database.getList().get(index).getAgreementList().get(index2).setSubject(tmp);
+                            database.getList().get(index).getAgreementList().get(index2).setIncome();
+                        }
+                    }
+
+                    else if (choice == 4) {
                         do{
                             menu.incomeMenu();
                             choice = scanner.nextInt();
@@ -69,10 +99,9 @@ public class MainRun {
                             }
                         }while (choice < 4);
                     }
-                    else if (choice == 4) {
-                        handler.printClients(database);
-                    }
                     else if (choice == 5) {
+                        handler.printClients(database);
+                    } else if (choice == 6) {
                         System.out.println("Choose the client to see the agreements");
                         handler.printClients(database);
                         index = scanner.nextInt();
@@ -87,6 +116,6 @@ public class MainRun {
             else {
                 System.out.println("Exiting...");
             }
-        }while (choice < 6);
+        }while (choice < 7);
     }
 }

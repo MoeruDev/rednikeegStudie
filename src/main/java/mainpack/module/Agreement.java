@@ -1,11 +1,10 @@
-package mainpack;
+package mainpack.module;
 
-import java.util.Scanner;
+import mainpack.module.subject.AbstractSubject;
 
 public class Agreement {
     private String title;
     private Integer number;
-    private Double income;
 
     private AbstractSubject subject;
 
@@ -19,13 +18,6 @@ public class Agreement {
         this.number = number;
     }
 
-    public void setIncome() {
-        if(this.subject.getType().equals("House")){
-            this.income = subject.nominalPrice * 0.02 + 250;
-        } else {
-            this.income = subject.nominalPrice * 0.01 + 100;
-        }
-    }
 
     public void setSubject(AbstractSubject subject) {
         this.subject = subject;
@@ -45,21 +37,24 @@ public class Agreement {
     }
 
     public Double getIncome(){
-        return this.income;
+        if(this.subject.getType().equals("House")){
+            return subject.getNominalPrice() * 0.02 + 250;
+        } else if(this.subject.getType().equals("Apartment")){
+            return subject.getNominalPrice() * 0.01 + 100;
+        } else {
+            throw new RuntimeException();
+        }
     }
 
     //constructor
 
-    Agreement(){
-        income = 0.0;
+    public Agreement(){
+
     }
 
-    Agreement(String nm, Integer num, Double in){
-        title = nm;
-        number = num;
-        income = in;
+    public Agreement(AbstractSubject subject) {
+        this.subject = subject;
     }
-
 
     @Override
     public String toString() {
@@ -68,12 +63,12 @@ public class Agreement {
             return
                     "Title='" + title + '\'' +
                             ", Number=" + number +
-                            ", Income=" + income;
+                            ", Income=" + getIncome() ;
         } else {
             return
                     "Title='" + title + '\'' +
                             ", Number=" + number +
-                            ", Income=" + income +
+                            ", Income=" +
                             ", " + subject.toString();
         }
 

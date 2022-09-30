@@ -1,4 +1,4 @@
-package mainpack;
+package mainpack.module.subject;
 
 public abstract class AbstractSubject {
     protected String name;

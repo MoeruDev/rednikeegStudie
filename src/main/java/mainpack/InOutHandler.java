@@ -1,5 +1,9 @@
 package mainpack;
 
+import mainpack.module.Agreement;
+import mainpack.module.Client;
+import mainpack.module.subject.AbstractSubject;
+
 import java.util.Scanner;
 
 public class InOutHandler {
@@ -51,5 +55,27 @@ public class InOutHandler {
         for(int i=0; i <database.getList().get(index).getAgreementList().size();i++){
             System.out.println(i+". "+ database.getList().get(index).getAgreementList().get(i).toString());
         }
+    }
+    public void mainMenu(){
+        System.out.println("\nMenu\n" + "Choose one option\n");
+        System.out.println("1.Add Client");
+        System.out.println("2.Create agreement for client");
+        System.out.println("3.Create subject for agreement");
+        System.out.println("4.Calculate the income of company");
+        System.out.println("5.Show the info(clients)");
+        System.out.println("6.Show the info(agreements)");
+        System.out.println("7.Exit program");
+    }
+    public void incomeMenu(){
+        System.out.println("\nChoose the criterion to calculate the income\n");
+        System.out.println("4.1 All agreements");
+        System.out.println("4.2 Specific client");
+        System.out.println("4.3 Average agreements of clients");
+        System.out.println("4.4 Exit");
+    }
+    public void subjectMenu(){
+        System.out.println("Enter Subject:");
+        System.out.println("1.House");
+        System.out.println("2.Apartment");
     }
 }

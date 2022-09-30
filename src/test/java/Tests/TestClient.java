@@ -11,12 +11,15 @@ import java.util.Arrays;
 
 public class TestClient {
     @Test
-    void testCalculateClientIncome(){
+    void testCalculateClientIncome() {
         Client client = new Client();
         client.getAgreementList().addAll(Arrays.asList(
                 new Agreement(new Apartment(100000.0)),
                 new Agreement(new House(100000.0))));
-        Assertions.assertEquals(3350.0,client.calcClientIncome());
+
+        Double result = client.calcClientIncome();
+
+        Assertions.assertEquals(3350.0, result);
 
     }
 }

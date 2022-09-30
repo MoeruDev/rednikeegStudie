@@ -23,7 +23,11 @@ public class TestDatabase {
                 new Agreement(new House(200000.0))));
         Database database = new Database();
         database.getList().addAll(Arrays.asList(client,client2));
-        Assertions.assertEquals(9700.0,database.calcAll());
-        Assertions.assertEquals(4850.0,database.calcAverage());
+
+        Double resultAll =database.calcAll();
+        Double resultAvg =database.calcAverage();
+
+        Assertions.assertEquals(9700.0,resultAll);
+        Assertions.assertEquals(4850.0,resultAvg);
     }
 }

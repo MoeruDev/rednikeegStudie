@@ -15,6 +15,9 @@ public class TestAgreement {
         AbstractSubject subject = new Apartment();
         subject.setNominalPrice(100000.0);
         agreement.setSubject(subject);
-        Assertions.assertEquals(1100.0,agreement.getIncome());
+
+        Double result =agreement.getIncome();
+
+        Assertions.assertEquals(1100.0,result);
     }
 }

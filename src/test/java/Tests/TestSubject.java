@@ -8,12 +8,18 @@ import org.junit.jupiter.api.Test;
 
 public class TestSubject {
     @Test
-    void testHouse(){
+    void testHouse() {
         AbstractSubject house = new House();
-        Assertions.assertEquals("House",house.getType());
+
+        String result = house.getType();
+        Assertions.assertEquals("House", result);
     }
-    void testApartment(){
+
+    void testApartment() {
         AbstractSubject apartment = new Apartment();
-        Assertions.assertEquals("Apartment",apartment.getType());
+
+        String result = apartment.getType();
+
+        Assertions.assertEquals("Apartment", result);
     }
 }

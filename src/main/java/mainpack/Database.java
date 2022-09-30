@@ -1,13 +1,16 @@
 package mainpack;
 
+import mainpack.module.Agreement;
+import mainpack.module.Client;
+
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Scanner;
 
 public class Database {
     private List<Client> list;
 
-    Database(){
+    public Database(){
         list = new ArrayList<>();
     }
 

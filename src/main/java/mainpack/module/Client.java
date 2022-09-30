@@ -1,8 +1,7 @@
-package mainpack;
+package mainpack.module;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Client {
     private String name, surname, phoneNum;
@@ -35,27 +34,15 @@ public class Client {
 
     public List<Agreement> getAgreementList(){ return this.agreementList;}
     //constructor
-    Client(){
+    public Client(){
         agreementList = new ArrayList<>();
     }
 
-    Client(String nm, String sn, String pn){
-        name = nm;
-        surname = sn;
-        phoneNum = pn;
-    }
 
-
-
-    public int calcClientIncome(){
-        int result = 0;
-        for(int i = 0; i <agreementList.size(); i++){
-            result += agreementList.get(i).getIncome();
-        }
-        return result;
-         // int result1 =agreementList.stream()
-         //       .map(Agreement::getIncome)
-         //       .sum();
+    public double calcClientIncome(){
+       return agreementList.stream()
+                .mapToDouble(Agreement::getIncome)
+                .sum();
     }
 
     @Override
